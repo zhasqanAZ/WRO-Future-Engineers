@@ -20,7 +20,7 @@ Follow us as we share our progress, ideas, and code on the road to nationals and
 
 Our project is an **autonomous vehicle** designed to navigate and react to its environment using intelligent sensing and control systems.
 
-The car is built on a **custom LEGO + 3D printed chassis**, powered by an **Arduino-based PopXT Bot/ Arduino Leonardo board**, and equipped with a **HuskyLens AI camera** for object detection and line tracking.
+The car is built on a **custom LEGO chassis**, powered by an **Arduino-based PopXT Bot/ Arduino Leonardo board**, and equipped with a **HuskyLens AI camera** for object detection and line tracking.
 
 This system demonstrates the integration of hardware, AI, and mechanical design to create a functional and adaptable autonomous robot.
 
