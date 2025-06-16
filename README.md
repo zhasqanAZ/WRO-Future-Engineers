@@ -1,4 +1,5 @@
-# ZHANYM
+# <h1 align="center"> ZHANYM </h1> 
+ZHANYM
 This repository showcases the journey and development of our robot created for the **2025 World Robot Olympiad – Future Engineers** category.
 
 We are **Team Zhanym WRO2025**, a duo of passionate and driven girls who designed, engineered, and built this robot from the ground up.
@@ -11,7 +12,7 @@ Here, you'll find all the documentation, design insights, and technical details 
 
 
 ## Team Members 
-# Khanbay Aigerim
+### Khanbay Aigerim
 Hello! 👋
 
 My name is **Aigerim**, and I am **17 years old**.
@@ -27,7 +28,7 @@ Now, I'm excited to take things to the next level as I dive into the **Future En
 <img src="t-photos/Aigerim.jpg" alt="Aigerim" width="300"/>
 
 
-# Zharas Zhanuya
+### Zharas Zhanuya
 Hi! 👋
 
 I’m **Zhanuya**, a **16-year-old student** passionate about **engineering**, **coding**, and **hands-on problem solving**.
@@ -40,7 +41,7 @@ and I’m excited to keep learning and building in this category! 🚀
 <img src="t-photos/Zhanuya.jpg" alt="Zhanuya" width="300"/>
 
 
-# 👨‍🏫 Mentor: Mister Askar
+### 👨‍🏫 Mentor: Mister Askar
 Hello! My name is **Askar**, and I am the **mentor** of this amazing team.
 
 I’m truly happy to work with such talented and motivated students who are passionate about engineering, creativity, and robotics.
