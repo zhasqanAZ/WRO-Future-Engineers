@@ -26,3 +26,17 @@ and I’m excited to keep learning and building in this category! 🚀
 <img src="t-photos/Zhanuya.jpg" alt="Zhanuya" width="300"/>
 
 
+## 👨‍🏫 Mentor: Askar
+
+Hello! My name is **Askar**, and I am the **mentor** of this amazing team.
+
+I’m truly happy to work with such talented and motivated students who are passionate about engineering, creativity, and robotics.
+
+Guiding them through challenges and helping them grow is a privilege and a joy.
+
+I also work at **Nazarbayev Intellectual School (NIS)** in **Atyrau**, where I support young minds in exploring STEM fields and developing real-world problem-solving skills.
+
+<img src="t-photos/askar-mentor.jpg" alt="Askar - Mentor" width="300"/>
+
+
+
