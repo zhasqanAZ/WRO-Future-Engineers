@@ -1,5 +1,5 @@
 # <h1 align="center"> ZHANYM </h1> 
-ZHANYM
+
 This repository showcases the journey and development of our robot created for the **2025 World Robot Olympiad – Future Engineers** category.
 
 We are **Team Zhanym WRO2025**, a duo of passionate and driven girls who designed, engineered, and built this robot from the ground up.
@@ -59,8 +59,34 @@ I also work at **Nazarbayev Intellectual School (NIS)** in **Atyrau**, where I s
 ## Autonomous Robotic Vehicle
 
 This autonomous robotic vehicle is capable of self-driving on a dynamically changing racetrack, completing multiple laps without human input and adapting to new configurations in each round.
-
-
+<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+  <table style="background-color: #f0f0f0; text-align: center; border-collapse: collapse; font-family: Arial, sans-serif; transform: scale(1.2);">
+    <tr>
+      <td style="padding: 20px;">
+        <img src="v-photos/front.jpg" width="250"><br><strong>Front</strong>
+      </td>
+      <td style="padding: 20px;">
+        <img src="v-photos/back.jpg" width="250"><br><strong>Back</strong>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px;">
+        <img src="v-photos/right.jpg" width="250"><br><strong>Right</strong>
+      </td>
+      <td style="padding: 20px;">
+        <img src="v-photos/left.jpg" width="250"><br><strong>Left</strong>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px;">
+        <img src="v-photos/top.jpg" width="250"><br><strong>Top</strong>
+      </td>
+      <td style="padding: 20px;">
+        <img src="v-photos/bottom.jpg" width="250"><br><strong>Bottom</strong>
+      </td>
+    </tr>
+  </table>
+</div>
 
 
 
