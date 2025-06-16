@@ -5,6 +5,9 @@ We are **Team Zhanym WRO2025**, a duo of passionate and driven girls who designe
 
 Here, you'll find all the documentation, design insights, and technical details behind our project.
 
+![Team Logo](others/LOGO.jpg)
+<img src="others/LOGO.jpg" alt="logo"/>
+
 # Hello! 👋
 
 My name is **Aigerim**, and I am **17 years old**.
