@@ -54,3 +54,31 @@ I also work at **Nazarbayev Intellectual School (NIS)** in **Atyrau**, where I s
 
 
 
+
+
+## Autonomous Robotic Vehicle
+
+This autonomous robotic vehicle is capable of self-driving on a dynamically changing racetrack, completing multiple laps without human input and adapting to new configurations in each round.
+
+
+
+
+
+
+
+## Engineering Documentation Overview
+
+This documentation outlines the key components of the engineering process involved in the development and operation of the autonomous vehicle. It provides an overview of the following subsystems:
+
+### Mobility Control
+Design and implementation of systems responsible for the vehicle's movement, including speed regulation, turning mechanisms, and path-following algorithms.
+
+### Power and Sensory Management
+Integration and management of the vehicle’s power supply, along with configuration and usage of various sensors. These sensors deliver essential environmental data used by the robot’s decision-making systems.
+
+### Obstacle Navigation and Avoidance
+Development of strategies and systems that allow the vehicle to detect, assess, and navigate around obstacles. This includes both hardware and software components required for safe and effective performance in the Obstacle Challenge.
+
+
+
+
