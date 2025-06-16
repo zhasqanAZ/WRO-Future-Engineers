@@ -5,8 +5,11 @@ We are **Team Zhanym WRO2025**, a duo of passionate and driven girls who designe
 
 Here, you'll find all the documentation, design insights, and technical details behind our project.
 
-![Team Logo](others/LOGO.jpg)
-<img src="others/LOGO.jpg" alt="logo"/>
+<p align="center">
+  <img src="other/LOGO.jpg" alt="Team Logo" width="300"/>
+</p>
+
+
 
 # Hello! 👋
 
