@@ -241,14 +241,290 @@ Integration and management of the vehicle’s power supply, along with configura
   - Built-in UART/I2C communication interface  
 - **Operating Voltage**: 3.3 V – 5 V  
 - **Usage**:
-  - **Stage 1 (Line Following)**: The robot uses HuskyLens to detect and follow lines on the track  
-  - **Stage 2 (Obstacle Challenge)**: Recognizes the color of blocks (e.g., red/green) to make navigation decisions accordingly  
+# 🤖 POP-BOT XT Self-Driving Robot — WRO2025
+
+This repository contains Arduino-based code for a self-driving robot using the **POP-BOT XT** platform, **HuskyLens AI camera**, and **MPU6050 gyroscope**.  
+It includes multiple stages of robot behavior: color-based navigation, obstacle avoidance, and gyroscopic stabilization.
+
+---
+
+## 🚦 Stage 1: Color-Based Navigation
+
+The robot moves forward and recognizes **blue** and **orange** color tags using the HuskyLens camera.  
+Depending on the color detected, it turns **left** (blue) or **right** (orange).
+
+### Code:
+```cpp
+#include <popxt.h>
+#include <Wire.h>
+#include "HUSKYLENS.h"
+
+#define DRIVE_MOTOR 1
+
+HUSKYLENS huskylens;
+bool actionTaken = false;
+
+void stopMotor() {
+  motor(DRIVE_MOTOR, 0);
+}
+
+void moveForward30cm() {
+  motor(DRIVE_MOTOR, 70);
+  delay(1300);
+  stopMotor();
+}
+
+void turn90deg() {
+  motor(DRIVE_MOTOR, 80);
+  delay(1700);
+  stopMotor();
+}
+
+void resumeMovement() {
+  servo(1, 88);
+  motor(DRIVE_MOTOR, 70);
+  actionTaken = false;
+  glcdClear();
+  glcd(1, 1, "Looking for color...");
+}
+
+void setup() {
+  setTextSize(1);
+  glcdMode(2);
+  glcdClear();
+  glcd(1, 1, "Press OK");
+
+  Wire.begin();
+  huskylens.begin(Wire);
+
+  sw_ok_press();
+  glcdClear();
+  glcd(1, 1, "Looking for color...");
+}
+
+void loop() {
+  if (actionTaken) return;
+
+  servo(1, 88);
+  motor(DRIVE_MOTOR, 70);
+
+  while (!actionTaken) {
+    if (huskylens.request()) {
+      while (huskylens.available()) {
+        HUSKYLENSResult result = huskylens.read();
+
+        if (result.ID == 3) {
+          glcdClear();
+          glcd(1, 1, "Orange detected");
+          moveForward30cm();
+          servo(1, 40);
+          delay(300);
+          turn90deg();
+          servo(1, 88);
+          delay(300);
+          resumeMovement();
+          break;
+
+        } else if (result.ID == 4) {
+          glcdClear();
+          glcd(1, 1, "Blue detected");
+          moveForward30cm();
+          servo(1, 114);
+          delay(300);
+          turn90deg();
+          servo(1, 88);
+          delay(300);
+          resumeMovement();
+          break;
+        }
+      }
+    }
+
+    delay(100);
+  }
+}
+``` 
+
+
 
 
 
 ---
 
-### 📐 MPU6050 Gyroscope + Accelerometer
+
+
+
+
+## Stage 2 (Obstacle Challenge): Recognizes the color of blocks (e.g., red/green) to make navigation decisions accordingly
+This code enables the robot to detect large green or red objects using the HuskyLens AI camera and perform obstacle avoidance maneuvers by turning left or right, respectively, while continuing forward when the path is clear.
+
+```cpp
+#include <Wire.h>
+#include <popxt.h>         // For controlling motors, servo, and screen
+#include "HUSKYLENS.h"     // HuskyLens AI Camera library
+
+HUSKYLENS huskylens;
+
+// Color IDs from HuskyLens training
+#define GREEN_ID 1
+#define RED_ID 2
+
+// Minimum size threshold to consider the object as an obstacle
+#define WIDTH_THRESHOLD 90
+#define HEIGHT_THRESHOLD 150
+
+#define DRIVE_MOTOR 1      // Single drive motor on rear wheels
+
+void setup() {
+    Serial.begin(115200);
+    Wire.begin();
+
+    glcdClear();
+    glcd(0, 0, "Initializing...");
+
+    // Initialize HuskyLens until success
+    while (!huskylens.begin(Wire)) {
+        Serial.println(F("Begin failed! Check I2C connection and protocol settings."));
+        glcd(0, 1, "HUSKY error...");
+        delay(500);
+    }
+
+    // Set algorithm to color recognition
+    huskylens.writeAlgorithm(ALGORITHM_COLOR_RECOGNITION);
+    glcd(0, 1, "Color mode ready!");
+    stopMotors();
+    delay(1000);
+    glcdClear();
+    setTextSize(1);
+    glcdMode(2);
+
+    // Wait for user to press OK button
+    glcd(0, 0, "Press OK to start");
+    sw_ok_press();
+    glcdClear();
+    glcd(0, 0, "Started!");
+    delay(500);
+}
+
+void loop() {
+    glcdClear();
+    Serial.println("Loop running...");
+
+    if (huskylens.request()) {
+        bool obstacleDetected = false;
+
+        // Iterate through detected color blocks
+        for (int i = 0; i < huskylens.countBlocks(); i++) {
+            HUSKYLENSResult result = huskylens.getBlock(i);
+
+            // Consider only large enough objects
+            if (result.width >= WIDTH_THRESHOLD || result.height >= HEIGHT_THRESHOLD) {
+                obstacleDetected = true;
+
+                if (result.ID == GREEN_ID) {
+                    glcd(0, 0, "Green object!");
+                    glcd(0, 1, "Avoid LEFT");
+                    Serial.println("Big green object — avoid to the LEFT.");
+                    avoidLeft();
+                } else if (result.ID == RED_ID) {
+                    glcd(0, 0, "Red object!");
+                    glcd(0, 1, "Avoid RIGHT");
+                    Serial.println("Big red object — avoid to the RIGHT.");
+                    avoidRight();
+                }
+                break;  // Exit loop after first large object
+            }
+        }
+
+        if (!obstacleDetected) {
+            glcd(0, 0, "Clear path");
+            glcd(0, 1, "Moving forward");
+            Serial.println("No big object — moving forward.");
+            goForward();
+        }
+
+    } else {
+        glcd(0, 0, "Looking for");
+        glcd(0, 1, "color object...");
+        Serial.println("No object detected, moving forward.");
+        goForward();
+    }
+
+    delay(100);
+}
+
+
+// Movement control functions
+
+
+void goForward() {
+    Serial.println("Going forward");
+    servo(1, 88);               // Steering straight
+    motor(DRIVE_MOTOR, 70);     // Drive forward
+}
+
+void stopMotors() {
+    motor(DRIVE_MOTOR, 0);
+}
+
+// Turn the robot 90° left
+void turnLeft90() {
+    servo(1, 114);              // Turn wheels left
+    delay(300);
+    motor(DRIVE_MOTOR, 80);
+    delay(500);
+    stopMotors();
+    servo(1, 88);               // Straighten wheels
+    delay(300);
+}
+
+// Turn the robot 90° right
+void turnRight90() {
+    servo(1, 40);               // Turn wheels right
+    delay(300);
+    motor(DRIVE_MOTOR, 80);
+    delay(500);
+    stopMotors();
+    servo(1, 88);               // Straighten wheels
+    delay(300);
+}
+
+// Avoid obstacle by going left and returning to path
+void avoidLeft() {
+    stopMotors();
+    delay(100);
+    turnLeft90();
+    motor(DRIVE_MOTOR, 70);
+    delay(300);
+    turnRight90();
+    motor(DRIVE_MOTOR, 70);
+    delay(800);
+    stopMotors();
+}
+
+// Avoid obstacle by going right and returning to path
+void avoidRight() {
+    stopMotors();
+    delay(100);
+    turnRight90();
+    motor(DRIVE_MOTOR, 70);
+    delay(300);
+    turnLeft90();
+    motor(DRIVE_MOTOR, 70);
+    delay(800);
+    stopMotors();
+}
+
+``` 
+
+
+
+
+
+
+###📐 MPU6050 Gyroscope + Accelerometer
+This code uses data from the MPU6050 gyroscope to maintain straight-line motion by dynamically adjusting the steering angle based on yaw correction.
+
 
 <p align="center">
   <img src="other/images/mpu.jpg" alt="MPU6050 Sensor" width="300"/>
@@ -262,7 +538,9 @@ Integration and management of the vehicle’s power supply, along with configura
 - **Usage**:
   - The robot uses the **gyroscope** to measure angular rotation, enabling more precise turns and directional stability  
   - Helps to smooth out turning behavior, especially during sharp cornering
- ```cpp
+
+
+```cpp
 #include <Wire.h>
 #include <MPU6050_light.h>
 #include <popxt.h>
@@ -326,8 +604,7 @@ void loop() {
   servo(SERVO_PIN, currentSteer);
   delay(50);
 }
-```
-
+``` 
 
 
 
