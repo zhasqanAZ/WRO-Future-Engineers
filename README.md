@@ -624,12 +624,37 @@ The HuskyLens camera is trained to recognize specific colors in order to execute
 <p align="center">
   <img src="other/images/green.jpg" alt="green" width="450"/>
 </p>
-When the HuskyLens camera detects **a green-colored object** (such as a brick), it triggers the robot to perform an avoidance maneuver by navigating around the obstacle from the left side.
+When the HuskyLens camera detects a green-colored object (such as a brick), it triggers the robot to perform an avoidance maneuver by navigating around the obstacle from the left side.
 
 
 <p align="center">
   <img src="other/images/red.jpg" alt="red" width="450"/>
 </p>
+When the HuskyLens camera detects a red-colored object (such as a brick), it triggers the robot to perform an avoidance maneuver by navigating around the obstacle from the right side.
+
+<p align="center">
+  <img src="other/images/orange.jpg" alt="orange" width="450"/>
+</p>
+
+
+
+
+
+<p align="center">
+  <img src="other/images/blue.jpg" alt="blue" width="450"/>
+</p>
+
+
+
+
+
+
+
+
+<p align="center">
+  <img src="other/images/parking.jpg" alt="parking" width="450"/>
+</p>
+
 
 
 
