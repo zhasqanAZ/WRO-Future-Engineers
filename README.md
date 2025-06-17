@@ -525,6 +525,16 @@ void avoidRight() {
 ### 📐 MPU6050 Gyroscope + Accelerometer
 This code uses data from the MPU6050 gyroscope to maintain straight-line motion by dynamically adjusting the steering angle based on yaw correction.
 
+PID Regulator with MPU6050                                                                                                                                           The MPU6050 provides real-time angle or motion data. The PID controller compares the current value (from MPU) with a target (setpoint) and adjusts the output (e.g., motor speed or servo position) to correct the difference.
+
+P (Proportional): Reacts to current error
+
+I (Integral): Reacts to accumulated past error
+
+D (Derivative): Reacts to predicted future error (rate of change)
+
+Together, they ensure smooth and stable correction, avoiding overshooting or oscillation.
+
 
 <p align="center">
   <img src="other/images/mpu.jpg" alt="MPU6050 Sensor" width="300"/>
@@ -606,7 +616,20 @@ void loop() {
 }
 ``` 
 
+## Obstacle Navigation and Avoidance
+This includes both hardware (HuskyLens AI Camera, motors, servos) and software (color recognition algorithms, motion logic) components to ensure safe and effective obstacle avoidance during the Obstacle Challenge.
+The HuskyLens camera is trained to recognize specific colors in order to execute corresponding maneuvers and issue appropriate commands during navigation.
 
+### The robot uses the HuskyLens AI camera in color recognition mode to identify specific trained colors.
+<p align="center">
+  <img src="other/images/green.jpg" alt="green" width="450"/>
+</p>
+When the HuskyLens camera detects **a green-colored object** (such as a brick), it triggers the robot to perform an avoidance maneuver by navigating around the obstacle from the left side.
+
+
+<p align="center">
+  <img src="other/images/red.jpg" alt="red" width="450"/>
+</p>
 
 
 
