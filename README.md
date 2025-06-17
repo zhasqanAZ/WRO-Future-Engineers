@@ -115,7 +115,11 @@ Over the course of development, we built and tested **three different chassis an
 - **Platform**: Open-source Linux-based EV3 firmware  
 - **Pros**: Familiar platform, easy sensor integration  
 - **Cons**: Long upload times, significant turning inaccuracies due to software delays and large motor inertia
-  ![Mobility Control](other/images/1_mobility_control.jpg)
+<p align="center">
+  <img src="other/images/1_mobility_control.jpg" alt="Mobility Control" width="400"/>
+</p>
+
+
 
 
 
@@ -123,7 +127,10 @@ Over the course of development, we built and tested **three different chassis an
 - **Motors**: Two front-mounted DC gearbox motors + front servo for steering  
 - **Platform**: POP-BOT XT board with direct wiring  
 - **Pros**: Improved maneuverability  
-- **Cons**: Required a lot of internal space for motor connections; turning errors due to all movement being concentrated in the front wheels  
+- **Cons**: Required a lot of internal space for motor connections; turning errors due to all movement being concentrated in the front wheels
+  <p align="center">
+  <img src="other/images/2_mobility_control.jpg" alt="Mobility Control" width="400"/>
+</p>
 
 #### ✅ Final Version: Rear-Wheel Drive with NXT Motor and Parallax Servo  
 - **Motors**: NXT motor for drive, Parallax continuous rotation servo for steering  
