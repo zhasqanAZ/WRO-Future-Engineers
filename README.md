@@ -223,7 +223,45 @@ Over the course of development, we built and tested **three different chassis an
 - **Usage in Our Robot**: Acts as the central control unit; both the NXT motor (drive) and the Parallax continuous rotation servo (steering) are connected to this board  
 
 
+## 🔌 Power and Sensory Management
 
+Integration and management of the vehicle’s power supply, along with configuration and usage of various sensors. These sensors deliver essential environmental data used by the robot’s decision-making systems.
+
+---
+
+### 📷 HuskyLens AI Camera
+
+<p align="center">
+  <img src="other/images/huskylens.jpg" alt="HuskyLens AI Camera" width="300"/>
+</p>
+
+- **Description**: Smart vision sensor with built-in machine learning algorithms  
+- **Key Features**:
+  - Recognizes lines, objects, colors, faces, QR codes, and tags
+  - Built-in UART/I2C communication interface  
+- **Operating Voltage**: 3.3 V – 5 V  
+- **Usage**:
+  - **Stage 1 (Line Following)**: The robot uses HuskyLens to detect and follow lines on the track  
+  - **Stage 2 (Obstacle Challenge)**: Recognizes the color of blocks (e.g., red/green) to make navigation decisions accordingly  
+
+
+
+---
+
+### 📐 MPU6050 Gyroscope + Accelerometer
+
+<p align="center">
+  <img src="other/images/mpu.jpg" alt="MPU6050 Sensor" width="300"/>
+</p>
+
+- **Description**: 6-axis motion tracking device (3-axis gyroscope + 3-axis accelerometer)  
+- **Key Features**:
+  - I2C communication  
+  - Integrated Digital Motion Processor (DMP)  
+- **Operating Voltage**: 3 V – 5 V  
+- **Usage**:
+  - The robot uses the **gyroscope** to measure angular rotation, enabling more precise turns and directional stability  
+  - Helps to smooth out turning behavior, especially during sharp cornering 
 
 
 
