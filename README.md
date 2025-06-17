@@ -114,7 +114,10 @@ Over the course of development, we built and tested **three different chassis an
 - **Motors**: Large EV3 motor for rear-wheel drive, Medium EV3 motor for steering  
 - **Platform**: Open-source Linux-based EV3 firmware  
 - **Pros**: Familiar platform, easy sensor integration  
-- **Cons**: Long upload times, significant turning inaccuracies due to software delays and large motor inertia  
+- **Cons**: Long upload times, significant turning inaccuracies due to software delays and large motor inertia
+  ![Mobility Control](other/images/1_mobility_control.jpg)
+
+
 
 #### 🔧 Second Version: Front-Wheel Drive with DC Gearbox Motors  
 - **Motors**: Two front-mounted DC gearbox motors + front servo for steering  
