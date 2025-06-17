@@ -151,6 +151,9 @@ Over the course of development, we built and tested **three different chassis an
 - **Rear-wheel drive** offers better traction and improved directional stability, especially at higher speeds  
 - The **Parallax servo** enables precise angular steering, making turns smoother and more accurate
    
+<p align="center">
+  <img src="v-photos/right.jpg" alt="Mobility Control" width="400"/>
+</p>
 
   
 ---
