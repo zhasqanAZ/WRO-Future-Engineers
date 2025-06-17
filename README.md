@@ -205,6 +205,23 @@ Over the course of development, we built and tested **three different chassis an
 
 ---
 
+### 🏗️ Control Board: POP‑BOT XT
+
+<p align="center">
+  <img src="other/images/pop_bot.jpg" alt="POP‑BOT XT Board" width="300"/>
+</p>
+
+#### 🧭 POP‑BOT XT (Arduino Leonardo–compatible)
+
+- **Microcontroller**: ATmega32U4, 16 MHz, preloaded with Arduino Leonardo bootloader  
+- **Memory**: 32 KB Flash, 2.5 KB SRAM, 1 KB EEPROM  
+- **I/O**: 12 analog inputs, digital I/O pins, I²C, UART, and SPI communication  
+- **Motor Drivers**: Two built-in DC motor drivers, three JST headers for servos (4.8–7.2 V supported)  
+- **Power Supply**: Powered by 4 × AA batteries (4.8–6 V), with onboard step-up/step-down voltage regulator (+5 V)  
+- **Other Features**: Integrated 1.8" color graphic LCD (128×160, 262K colors), USB programmable without external hardware  
+- **Advantages**: All-in-one robotics platform — microcontroller, motor drivers, power management, and display in a single board  
+- **Usage in Our Robot**: Acts as the central control unit; both the NXT motor (drive) and the Parallax continuous rotation servo (steering) are connected to this board  
+
 
 
 
