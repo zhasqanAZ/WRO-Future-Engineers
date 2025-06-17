@@ -52,9 +52,7 @@ I also work at **Nazarbayev Intellectual School (NIS)** in **Atyrau**, where I s
 
 <img src="t-photos/askar-mentor.jpg" alt="Askar - Mentor" width="300"/>
 
-
-
-
+---
 
 ## Autonomous Robotic Vehicle
 
@@ -104,6 +102,53 @@ Integration and management of the vehicle’s power supply, along with configura
 
 ### Obstacle Navigation and Avoidance
 Development of strategies and systems that allow the vehicle to detect, assess, and navigate around obstacles. This includes both hardware and software components required for safe and effective performance in the Obstacle Challenge.
+
+# Mobility Control
+## ⚙️ Mobility Control
+
+### Evolution of Design
+
+Over the course of development, we built and tested **three different chassis and drive configurations** to find the most reliable and competition-ready setup.
+
+#### 🔧 First Version: EV3-Based Rear-Wheel Drive  
+- **Motors**: Large EV3 motor for rear-wheel drive, Medium EV3 motor for steering  
+- **Platform**: Open-source Linux-based EV3 firmware  
+- **Pros**: Familiar platform, easy sensor integration  
+- **Cons**: Long upload times, significant turning inaccuracies due to software delays and large motor inertia  
+
+#### 🔧 Second Version: Front-Wheel Drive with DC Gearbox Motors  
+- **Motors**: Two front-mounted DC gearbox motors + front servo for steering  
+- **Platform**: POP-BOT XT board with direct wiring  
+- **Pros**: Improved maneuverability  
+- **Cons**: Required a lot of internal space for motor connections; turning errors due to all movement being concentrated in the front wheels  
+
+#### ✅ Final Version: Rear-Wheel Drive with NXT Motor and Parallax Servo  
+- **Motors**: NXT motor for drive, Parallax continuous rotation servo for steering  
+- **Drive Configuration**: Rear-wheel drive  
+- **Improvements**:  
+  - Rear-wheel drive offers better traction and improved directional stability, especially at higher speeds  
+  - The Parallax servo enables precise angular steering, making turns smoother and more accurate  
+
+---
+
+### 🔩 Drivetrain & Motors
+
+- **Drive Motor**: LEGO NXT motor  
+- **Mounting**: Connected through a custom holder to the rear axle  
+- **Motor Driver**: Integrated with POP-BOT XT board  
+- **Steering Mechanism**: Parallax continuous rotation servo motor connected via 3D-printed linkage system  
+
+
+---
+
+### 🔧 Potential Improvements
+
+- Upgrade NXT motor to a lighter high-efficiency DC motor to reduce weight and increase speed control  
+- Implement position feedback from servo for dynamic steering correction  
+- Add soft damping or suspension to reduce shaking on uneven surfaces  
+
+
+
 
 
 
