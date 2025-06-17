@@ -522,7 +522,7 @@ void avoidRight() {
 
 
 
-###📐 MPU6050 Gyroscope + Accelerometer
+### 📐 MPU6050 Gyroscope + Accelerometer
 This code uses data from the MPU6050 gyroscope to maintain straight-line motion by dynamically adjusting the steering angle based on yaw correction.
 
 
