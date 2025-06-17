@@ -261,7 +261,73 @@ Integration and management of the vehicle’s power supply, along with configura
 - **Operating Voltage**: 3 V – 5 V  
 - **Usage**:
   - The robot uses the **gyroscope** to measure angular rotation, enabling more precise turns and directional stability  
-  - Helps to smooth out turning behavior, especially during sharp cornering 
+  - Helps to smooth out turning behavior, especially during sharp cornering
+ ```cpp
+#include <Wire.h>
+#include <MPU6050_light.h>
+#include <popxt.h>
+
+MPU6050 mpu(Wire);
+
+#define DRIVE_MOTOR 1
+#define SERVO_PIN 1
+#define BASE_SERVO 88
+#define DEAD_ZONE 0.01
+
+float Kp = 4.5;
+float Kd = 1.8;
+
+float yaw = 0.0;
+float targetYaw = 0.0;
+float prevError = 0.0;
+unsigned long lastTime = 0;
+
+int currentSteer = BASE_SERVO;
+bool started = false;
+
+void setup() {
+  Wire.begin();
+  mpu.begin();
+  mpu.calcGyroOffsets();
+
+  sw_ok_press();         // Ждём кнопку
+  mpu.calcGyroOffsets(); // Повторная калибровка
+
+  servo(SERVO_PIN, BASE_SERVO);
+  lastTime = millis();
+}
+
+void loop() {
+  if (!started) {
+    motor(DRIVE_MOTOR, 70);
+    started = true;
+  }
+
+  mpu.update();
+
+  float dt = (millis() - lastTime) / 1000.0;
+  lastTime = millis();
+
+  float gz = mpu.getGyroZ();
+  if (abs(gz) < DEAD_ZONE) gz = 0;
+  yaw += gz * dt;
+
+  float error = targetYaw - yaw;
+  float derivative = (error - prevError) / dt;
+  prevError = error;
+
+  float output = constrain(Kp * error + Kd * derivative, -25, 25);
+  int targetSteer = constrain(BASE_SERVO + output, 40, 130);
+
+  if (targetSteer > currentSteer + 3)      currentSteer += 3;
+  else if (targetSteer < currentSteer - 3) currentSteer -= 3;
+  else                                     currentSteer = targetSteer;
+
+  servo(SERVO_PIN, currentSteer);
+  delay(50);
+}
+```
+
 
 
 
