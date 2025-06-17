@@ -161,18 +161,50 @@ Over the course of development, we built and tested **three different chassis an
 ### 🔩 Drivetrain & Motors
 
 - **Drive Motor**: LEGO NXT motor  
-- **Mounting**: Connected through a custom holder to the rear axle  
+- **Mounting**: Connected to the rear axle using a custom holder  
 - **Motor Driver**: Integrated with POP-BOT XT board  
-- **Steering Mechanism**: Parallax continuous rotation servo motor connected via 3D-printed linkage system  
+- **Steering Mechanism**: Parallax continuous rotation servo motor connected to the front wheels  
+ 
+### Potential Improvements
+- Upgrade NXT motor to a lighter high-efficiency DC motor to reduce weight and increase speed control  
+- Implement position feedback from the servo for dynamic steering correction  
+- Add soft damping or suspension to reduce shaking on uneven surfaces  
+
+### Motor Components in Final Version
+
+<p align="center">
+  <img src="other/images/nxt_motor.jpg" alt="LEGO NXT Motor" width="300"/>
+</p>
+
+#### ⚙️ LEGO NXT Motor  
+- **Description**: 9 V DC motor with 48:1 internal gearbox and optical encoder (~1° resolution) :contentReference[oaicite:1]{index=1}  
+- **Key Specs**:  
+  - Built-in optical encoder provides position feedback :contentReference[oaicite:2]{index=2}  
+  - Gear reduction gives high torque at low RPM :contentReference[oaicite:3]{index=3}  
+- **Advantages**: precise movement control, reliable performance in robotic applications  
+- **Disadvantages**: heavier than micro DC options; limited top speed  
+- **Usage**: used for rear-wheel drive
+
+---
+
+<p align="center">
+  <img src="other/images/parallax.jpg" alt="Parallax Continuous Rotation Servo" width="300"/>
+</p>
+
+#### 🌀 Parallax Continuous Rotation Servo (900‑00008)  
+- **Description**: continuous-rotation servo made by Parallax (Futaba gear set), designed for PWM control of speed and direction :contentReference[oaicite:4]{index=4}  
+- **Key Specs** (900‑00008):  
+  - Operating voltage: 4–6 V DC :contentReference[oaicite:5]{index=5}  
+  - Torque: ~2.7 kg·cm (4.8 V) up to ~3.0 kg·cm (6 V) :contentReference[oaicite:6]{index=6}  
+  - Speed: ~50–60 RPM (no load) :contentReference[oaicite:7]{index=7}  
+  - Weight: ~42–45 g :contentReference[oaicite:8]{index=8}  
+- **Advantages**: precise angular steering via PWM (1300–1700 µs pulse widths) :contentReference[oaicite:9]{index=9}  
+- **Considerations**: requires calibration (center potentiometer adjustment) :contentReference[oaicite:10]{index=10}  
+- **Usage**: used for steering mechanism in final version
 
 
 ---
 
-### 🔧 Potential Improvements
-
-- Upgrade NXT motor to a lighter high-efficiency DC motor to reduce weight and increase speed control  
-- Implement position feedback from servo for dynamic steering correction  
-- Add soft damping or suspension to reduce shaking on uneven surfaces  
 
 
 
