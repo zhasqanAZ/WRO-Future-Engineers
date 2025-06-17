@@ -132,13 +132,27 @@ Over the course of development, we built and tested **three different chassis an
   <img src="other/images/2_mobility_control.jpg" alt="Mobility Control" width="400"/>
 </p>
 
+🔧 **Third Version: Rear-Wheel Drive with EV3 Medium Motor for Steering**  
+**Motors**: NXT motor for rear-wheel drive, Medium EV3 motor for steering  
+**Drive Configuration**: Rear-wheel drive  
+**Platform**: POP-BOT XT board  
+
+
+**Pros**: Compact rear-wheel drive setup, stable at higher speeds  
+**Cons**: Steering lacked precision since it was controlled by power level instead of angle, which led to inaccurate turns and difficulty in fine adjustments  
+ <p align="center">
+  <img src="other/images/3_mobility_control.jpg" alt="Mobility Control" width="400"/>
+</p>
+
 #### ✅ Final Version: Rear-Wheel Drive with NXT Motor and Parallax Servo  
 - **Motors**: NXT motor for drive, Parallax continuous rotation servo for steering  
 - **Drive Configuration**: Rear-wheel drive  
 - **Improvements**:  
-  - Rear-wheel drive offers better traction and improved directional stability, especially at higher speeds  
-  - The Parallax servo enables precise angular steering, making turns smoother and more accurate  
+- **Rear-wheel drive** offers better traction and improved directional stability, especially at higher speeds  
+- The **Parallax servo** enables precise angular steering, making turns smoother and more accurate
+   
 
+  
 ---
 
 ### 🔩 Drivetrain & Motors
