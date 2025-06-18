@@ -87,6 +87,7 @@ This autonomous robotic vehicle is capable of self-driving on a dynamically chan
 </div>
 
 
+[🎬 Watch Video](https://youtu.be/Wi_wQ2bi3kk?si=jCcD25NxIpxFfM3Z)
 
 
 
