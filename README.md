@@ -636,24 +636,166 @@ When the HuskyLens camera detects a red-colored object (such as a brick), it tri
   <img src="other/images/orange.jpg" alt="orange" width="450"/>
 </p>
 
+The robot determines the direction of movement (clockwise or counterclockwise) based on the color of the line it detects. If the first line encountered is orange, this indicates that the robot should move in a clockwise direction, consistently turning right.
+```cpp
+ if (result.ID == 3) {
+          glcdClear();
+          glcd(1, 1, "Orange detected");
+          moveForward30cm();
+          servo(1, 40);
+          delay(300);
+          turn90deg();
+          servo(1, 88);
+          delay(300);
+          resumeMovement();
+          break;
 
-
-
+``` 
+---
 
 <p align="center">
   <img src="other/images/blue.jpg" alt="blue" width="450"/>
 </p>
 
+The same logic applies to the blue color. If the robot detects a blue line first, it indicates that the movement should be counterclockwise. In this case, the robot moves forward when it sees the blue line and consistently turns left.
 
 
+```cpp
+        } else if (result.ID == 4) {
+          glcdClear();
+          glcd(1, 1, "Blue detected");
+          moveForward30cm();
+          servo(1, 114);
+          delay(300);
+          turn90deg();
+          servo(1, 88);
+          delay(300);
+          resumeMovement();
+          break;
 
+``` 
 
-
+---
 
 
 <p align="center">
   <img src="other/images/parking.jpg" alt="parking" width="450"/>
 </p>
+
+After completing three full laps, the robot detects a parking zone marked with the color magenta. Upon recognition, it enters the zone and aligns itself parallel to the inner walls.
+
+```cpp
+
+#include <popxt.h>
+#include <HUSKYLENS.h>
+#include <Wire.h>
+
+#define DRIVE_MOTOR 1
+#define SERVO_PIN 1
+
+HUSKYLENS huskylens;
+String direction = "clockwise"; // или "counterclockwise", в зависимости от того, как определено ранее
+bool parkingStarted = false;
+bool aligned = false;
+bool parked = false;
+bool exited = false;
+
+void setup() {
+  Wire.begin();
+  huskylens.begin(Wire);
+  huskylens.writeAlgorithm(ALGORITHM_OBJECT_TRACKING);
+
+  glcdMode(2);
+  glcdClear();
+  setTextSize(2);
+  glcd(1, 1, "Waiting for ID5...");
+}
+
+void loop() {
+  huskylens.request();
+
+  // Ищем ID5 (парковку)
+  for (int i = 0; i < huskylens.count(); i++) {
+    HUSKYLENSResult block = huskylens.get(i);
+    if (block.ID == 5 && !parkingStarted) {
+      parkingStarted = true;
+      glcdClear();
+      glcd(1, 1, "Parking...");
+      break;
+    }
+  }
+
+  // Когда парковка началась
+  if (parkingStarted && !aligned) {
+    moveForward(800); // Едет прямо перед поворотом
+    if (direction == "clockwise") {
+      turnLeft(600); // Повернуть перпендикулярно парковке
+    } else {
+      turnRight(600);
+    }
+    aligned = true;
+  }
+
+  // Заезжает внутрь и выравнивается
+  if (aligned && !parked) {
+    moveForward(1000); // Заезд внутрь парковки
+    delay(500);
+    stopMotors();
+    delay(500);
+    servo(SERVO_PIN, 90); // Предположим, сервомотор выравнивает датчики или колёса
+    parked = true;
+    glcdClear();
+    glcd(1, 1, "Parked.");
+    delay(1000);
+  }
+
+  // Возвращается в начальное положение
+  if (parked && !exited) {
+    // Назад немного
+    moveBackward(1000);
+    if (direction == "clockwise") {
+      turnRight(600); // Повернуться обратно
+    } else {
+      turnLeft(600);
+    }
+    moveForward(800); // Вернуться в траекторию
+    stopMotors();
+    exited = true;
+    glcdClear();
+    glcd(1, 1, "Done.");
+  }
+}
+
+// --- Движение ---
+
+void moveForward(int time) {
+  motor(DRIVE_MOTOR, 100, 100);
+  delay(time);
+  stopMotors();
+}
+
+void moveBackward(int time) {
+  motor(DRIVE_MOTOR, -100, -100);
+  delay(time);
+  stopMotors();
+}
+
+void turnLeft(int time) {
+  motor(DRIVE_MOTOR, 0, 100);
+  delay(time);
+  stopMotors();
+}
+
+void turnRight(int time) {
+  motor(DRIVE_MOTOR, 100, 0);
+  delay(time);
+  stopMotors();
+}
+
+void stopMotors() {
+  motor(DRIVE_MOTOR, 0, 0);
+}
+``` 
 
 
 
