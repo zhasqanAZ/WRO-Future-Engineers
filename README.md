@@ -244,7 +244,7 @@ Integration and management of the vehicle’s power supply, along with configura
 # 🤖 POP-BOT XT Self-Driving Robot — WRO2025
 
 ---
-<p align="center"> <img src="other/images/distance_sensor.jpg" alt="Sharp IR Sensor" width="300"/> </p>
+<p align="center"> <img src="other/images/distance_sensor.webp" alt="Sharp IR Sensor" width="300"/> </p>
 Description: Infrared analog distance sensor for short-range object detection
 
 Key Features:
