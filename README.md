@@ -243,7 +243,123 @@ Integration and management of the vehicle’s power supply, along with configura
 - **Usage**:
 # 🤖 POP-BOT XT Self-Driving Robot — WRO2025
 
-This repository contains Arduino-based code for a self-driving robot using the **POP-BOT XT** platform, **HuskyLens AI camera**, and **MPU6050 gyroscope**.  
+---
+<p align="center"> <img src="other/images/distance_sensor.jpg" alt="Sharp IR Sensor" width="300"/> </p>
+Description: Infrared analog distance sensor for short-range object detection
+
+Key Features:
+
+Detects objects in the range of 10 cm – 80 cm
+
+Non-contact distance measurement using infrared reflection
+
+Analog output voltage inversely proportional to distance
+
+Model: Sharp GP2Y0A21YK0F (or compatible)
+
+Operating Voltage: 4.5 V – 5.5 V
+
+Interface: Analog (connects to analog input pin)
+
+Typical Output: ~3.0 V at 10 cm, ~0.4 V at 80 cm
+
+Usage:
+Used for obstacle detection, wall-following, and precise distance measurement in robotics applications like the POP-BOT XT Self-Driving Robot — WRO2025
+
+```cpp
+
+#include <popxt.h>
+
+int distRight, distLeft, distFront;
+
+void setup() {
+  setTextSize(2);
+  glcdMode(2);
+  glcdClear();
+  glcd(2, 1, "Press OK");
+  sw_ok_press();  // Ожидаем нажатие кнопки OK
+  glcdClear();
+  glcd(1, 1, "Start Driving...");
+  delay(1000);
+}
+
+void loop() {
+  // ======= Движение вперёд =======
+  glcd(0, 1, "Moving Forward");
+  motor(2, 100); // Оба мотора вперёд
+
+  while (true) {
+    distFront = getdist(4); // A4 — фронтальный датчик
+
+    char buf[21];
+    sprintf(buf, "Front: %d cm   ", distFront);
+    glcd(2, 1, buf);
+
+    if (distFront <= 15) {
+      // ======= Слишком близко: отъехать назад =======
+      glcd(0, 1, "Too Close! Back");
+      motor(2, -50);   // Назад
+      delay(1200);
+      motor(2, 0);
+      delay(200);
+      break;  // Прерываем цикл — продолжим анализ
+    } else if (distFront <= 25) {
+      // ======= Препятствие на рабочем расстоянии: остановиться и повернуть =======
+      motor(2, 0);  // Стоп
+      delay(100);
+      
+      // ======= Чтение боковых датчиков =======
+      distLeft = getdist(2);   // A2 — левый
+      distRight = getdist(5);  // A0 — правый
+
+      char buf[21];
+      sprintf(buf, "L:%d R:%d       ", distLeft, distRight);
+      glcd(3, 1, buf);
+      delay(50);
+
+      if (distLeft > distRight) {
+        glcd(0, 1, "Turn left    ");
+        motor(1, -35);  // Левый мотор назад — поворот налево
+        delay(500);
+        motor(2, 100);   // Правый мотор вперёд
+        delay(1600);
+        motor(2, 0);
+        motor(1,35);   // Левый мотор вперёд — коррекция
+        delay(500);
+      } else {
+        glcd(0, 1, "Turn right   ");
+        motor(1, 30);   // Левый мотор вперёд — поворот направо
+        delay(300);
+        motor(2, 100);   // Правый мотор вперёд
+        delay(1600);
+        motor(2, 0);
+        motor(1, -30);  // Левый мотор назад — коррекция
+        delay(300);
+      }
+
+      delay(100);
+      break;  // После поворота выходим из цикла, чтобы ехать снова
+    }
+
+    // Если расстояние больше 25 см — продолжаем ехать вперёд
+    delay(50);
+  }
+
+  // ======= Очистка экрана перед следующим циклом =======
+  glcdClear();
+  glcd(1, 2, "Looping...");
+
+  delay(500);  // Немного подождать перед новой итерацией
+}
+
+
+
+
+
+
+``` 
+
+This repository contains Arduino-based code for a self-driving robot using the **POP-BOT XT** platform, **HuskyLens AI camera**, **Sharp Distance Sensor** and **MPU6050 gyroscope**.  
 It includes multiple stages of robot behavior: color-based navigation, obstacle avoidance, and gyroscopic stabilization.
 
 ---
