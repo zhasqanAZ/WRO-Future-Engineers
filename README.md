@@ -85,9 +85,13 @@ This autonomous robotic vehicle is capable of self-driving on a dynamically chan
     </tr>
   </table>
 </div>
+<p align="center">
+<img src="schemes/scheme.jpg" alt="scheme" width="800"/>
+</p>
 
+The following schematic illustrates the connections of all electrical components. The MPU6050 and HuskyLens modules are connected via the I2C interface. The Sharp distance sensors are connected to the analog input pins. Both the DC motor and the servo motor are connected to port 1, while the encoder of the DC motor is connected through the TX and RX pins.
 
-[🎬 Watch Video](https://youtu.be/Wi_wQ2bi3kk?si=jCcD25NxIpxFfM3Z)
+**[🎬 Watch Video](https://youtu.be/Wi_wQ2bi3kk?si=jCcD25NxIpxFfM3Z)**
 
 
 
